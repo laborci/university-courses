@@ -83,6 +83,37 @@ A feldolgozó (parser) a `loc` paraméter végződéséből okosan kitalálja, m
 1. **Dokumentum:** Ha a `loc` egy `.md` fájlra végződik (pl. `./README.md`), akkor azt egyszerű tartalomként jeleníti meg.
 2. **Almenü / Space:** Ha a `loc` egy mappára mutat (nincs kiterjesztése, pl. `./folder` vagy egy távoli mappa), akkor a rendszer tudja, hogy ez egy almenü. Ekkor letölti az adott mappában lévő `config.yml`-t, és annak a tartalmát (a benne lévő `items` listát) rekurzívan beilleszti a jelenlegi menüfa alá.
 
+## A Site Definíciója (site.yml)
+Az eddigiek egy adott *Space* (mappa/kurzus) felépítését írták le. De mi történik, ha valaki csak megnyitja a gyökér URL-t, például a `git-docs.pte.hu`-t?
+Erre szolgál a **Site Definíció** (pl. egy globális `site.yml`), amely magát a portált írja le. Ez tartalmazza a globális navigációt és a kiemelt kurzusok katalógusát.
+
+```yaml
+name: "PTE MIK Informatikai Kurzusok"
+logo: "https://ttk.pte.hu/logo.png"
+
+# A főoldal, amit betöltünk, ha valaki megnyitja a gyökér URL-t
+home: 
+  loc: pte-mik-docs@admin:main/welcome.md
+
+# A felső globális navigációs sáv (Top Navbar)
+navigation:
+  - title: "Oktatás (BSc)"
+    items:
+      - title: "Webprogramozás 1 (Nappali)"
+        loc: university-courses@laborci:main/web-programming-1/hu
+      - title: "Adatbázisok"
+        loc: db-course@kovacs:main/
+        
+  - title: "Kutatás & Projektek"
+    items:
+      - title: "Atom-Forge EU Dokumentáció"
+        loc: atom-forge-docs@laborci:main/
+```
+
+**Hogyan működik?**
+A SvelteKit app elindulásakor letölti a globális `site.yml`-t (amit pl. egy központi intézményi repóban tárolunk). Ez felépíti a portál arculatát és a felső navigációs menüt.
+Amikor a hallgató rákattint a "Webprogramozás 1" menüpontra, a rendszer átvált a kurzus nézetre, és elkezdi letölteni az előzőekben tárgyalt mappa szintű `config.yml`-t az adott repóból, felépítve az oldalsávot.
+
 ## Markdown Frontmatter Képességek
 Annak érdekében, hogy a fájlok önmagukban is hordozzanak metaadatokat (és ne mindent a `config.yml`-ben kelljen definiálni), minden Markdown fájl tetején YAML Frontmatter-t használunk. 
 
