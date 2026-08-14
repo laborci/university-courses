@@ -1,3 +1,5 @@
+const GITHUB_RAW_BASE = 'https://raw.githubusercontent.com/laborci/university-courses/main/web-programming-1';
+
 let config = null;
 let currentLang = '';
 
@@ -12,7 +14,8 @@ const dom = {
 // Initialize
 async function init() {
     try {
-        const response = await fetch('config.json');
+        // Fetch config directly from GitHub
+        const response = await fetch(`${GITHUB_RAW_BASE}/config.json`);
         config = await response.json();
         
         setupLanguageSelector();
@@ -23,7 +26,7 @@ async function init() {
         // Initial route
         handleRoute();
     } catch (err) {
-        dom.content.innerHTML = `<div style="color:red">Error loading configuration.</div>`;
+        dom.content.innerHTML = `<div style="color:red">Error loading configuration from GitHub.</div>`;
         console.error(err);
     }
 }
@@ -96,9 +99,10 @@ function renderSidebar(lang, activePath) {
 }
 
 async function loadContent(path) {
-    dom.content.innerHTML = `<div class="loader">Loading...</div>`;
+    dom.content.innerHTML = `<div class="loader">Loading from GitHub...</div>`;
     try {
-        const response = await fetch(path);
+        // Fetch raw markdown directly from GitHub
+        const response = await fetch(`${GITHUB_RAW_BASE}/${path}`);
         if (!response.ok) throw new Error('File not found');
         
         const markdown = await response.text();
@@ -110,13 +114,21 @@ async function loadContent(path) {
         renderer.link = function(href, title, text) {
             if (href.endsWith('.md') && !href.startsWith('http')) {
                 // Convert relative markdown links to hash routes
-                // Resolve relative path roughly
                 let resolvedPath = basePath + href;
-                // Basic cleanup of ./
                 resolvedPath = resolvedPath.replace(/\.\//g, '');
                 return `<a href="#/${resolvedPath}" title="${title || ''}">${text}</a>`;
             }
             return `<a href="${href}" title="${title || ''}" target="_blank">${text}</a>`;
+        };
+
+        // Also fix relative image paths to load from GitHub
+        renderer.image = function(href, title, text) {
+            if (!href.startsWith('http')) {
+                let resolvedPath = basePath + href;
+                resolvedPath = resolvedPath.replace(/\.\//g, '');
+                href = `${GITHUB_RAW_BASE}/${resolvedPath}`;
+            }
+            return `<img src="${href}" alt="${text}" title="${title || ''}" />`;
         };
         
         marked.setOptions({ renderer });
@@ -131,7 +143,7 @@ async function loadContent(path) {
     } catch (err) {
         dom.content.innerHTML = `
             <h2>Page not found</h2>
-            <p>The requested document could not be loaded.</p>
+            <p>The requested document could not be loaded from GitHub.</p>
         `;
     }
 }
