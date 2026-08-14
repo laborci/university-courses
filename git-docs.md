@@ -38,3 +38,59 @@ Ha egy oktató zárt vizsgasorokat vagy kutatási anyagokat szeretne megosztani:
 - **Nincs vendor lock-in:** Nem függünk fizetős SaaS platformoktól (mint a GitBook). A tananyag örökre a miénk marad, nyers Markdown formában.
 - **Költséghatékony:** Ingyenesen üzemeltethető (GitHub Pages + Cloudflare).
 - **Edukációs fókusz:** Maga az eszköz is a webprogramozás és a modern felhő-architektúrák kiváló esettanulmánya.
+
+## Technológiai Stack
+A végleges keretrendszer a következő modern alapokra épül:
+- **Keretrendszer:** Static SvelteKit (SSG) az ultragyors működés és a kiváló fejlesztői élmény érdekében.
+- **UI Könyvtár:** `atom-forge/ui`, amely biztosítja a prémium, konzisztens megjelenést és a kész, akadálymentes komponenseket.
+- **Adatforrás:** Közvetlen kliensoldali hívások a GitHub Raw API felé (szükség esetén Edge gyorsítótárazással).
+
+## Konfigurációs Példa (config.json)
+
+A föderált (több repón átívelő) rendszer kulcsa egy olyan `config.json`, amely képes megkülönböztetni a lokális fájlokat a távoli (external) hivatkozásoktól, sőt, akár teljes külső kurzusokat is képes beágyazni. 
+
+Íme egy példa, hogyan nézhet ki egy tanszéki központi kurzus (pl. `pte-mik/tanev-2026`) konfigurációja:
+
+```json
+{
+  "name": "Webprogramozás 1 (2026)",
+  "defaultLanguage": "hu",
+  "languages": ["hu", "en"],
+  
+  "sidebar": {
+    "hu": [
+      {
+        "title": "Általános Tudnivalók",
+        "type": "local",
+        "files": [
+          { "title": "Bevezető", "path": "hu/README.md" },
+          { "title": "Követelmények", "path": "hu/kovetelmenyek.md" }
+        ]
+      },
+      {
+        "title": "1-3. Hét: Web Alapok (Laborci)",
+        "type": "external-markdown",
+        "repo": "laborci/university-courses",
+        "branch": "main",
+        "files": [
+          { "title": "Mi az a Web?", "path": "web-programming-1/hu/01-what-is-the-web/README.md" },
+          { "title": "Kliens-Szerver", "path": "web-programming-1/hu/01-what-is-the-web/05-client-server-and-multitier.md" }
+        ]
+      },
+      {
+        "title": "4-6. Hét: Haladó JavaScript",
+        "type": "external-space",
+        "repo": "mas-oktato/js-masterclass",
+        "branch": "master",
+        "configPath": "config.json",
+        "description": "Beágyazza a másik oktató teljes kurzusának struktúráját ide a menübe."
+      }
+    ]
+  }
+}
+```
+
+### A hivatkozások működése:
+1. **`type: "local"`**: A szokásos betöltés. A rendszer a jelenlegi repó `hu/README.md` fájlját tölti be.
+2. **`type: "external-markdown"`**: A SvelteKit app felismeri, hogy külső repóról van szó, és a kérést dinamikusan a `https://raw.githubusercontent.com/laborci/university-courses/main/web-programming-1/hu/...` címre irányítja.
+3. **`type: "external-space"`**: Ez az igazi varázslat! A kliens letölti a `mas-oktato/js-masterclass` repóból a megadott `config.json`-t, kiparserolja belőle a menüpontokat, és egy fa-struktúrában beilleszti a jelenlegi oldalsávba. A felhasználó észre sem veszi, hogy épp egy teljesen másik repó struktúrájában navigál.
