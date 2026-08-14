@@ -108,30 +108,29 @@ async function loadContent(path) {
         const markdown = await response.text();
         
         // Setup marked to handle relative links within markdown
-        const renderer = new marked.Renderer();
         const basePath = path.substring(0, path.lastIndexOf('/') + 1);
         
-        renderer.link = function(href, title, text) {
-            if (href.endsWith('.md') && !href.startsWith('http')) {
-                // Convert relative markdown links to hash routes
-                let resolvedPath = basePath + href;
-                resolvedPath = resolvedPath.replace(/\.\//g, '');
-                return `<a href="#/${resolvedPath}" title="${title || ''}">${text}</a>`;
+        const renderer = {
+            link(href, title, text) {
+                if (href.endsWith('.md') && !href.startsWith('http')) {
+                    // Convert relative markdown links to hash routes
+                    let resolvedPath = basePath + href;
+                    resolvedPath = resolvedPath.replace(/\.\//g, '');
+                    return `<a href="#/${resolvedPath}" title="${title || ''}">${text}</a>`;
+                }
+                return `<a href="${href}" title="${title || ''}" target="_blank">${text}</a>`;
+            },
+            image(href, title, text) {
+                if (!href.startsWith('http')) {
+                    let resolvedPath = basePath + href;
+                    resolvedPath = resolvedPath.replace(/\.\//g, '');
+                    href = `${GITHUB_RAW_BASE}/${resolvedPath}`;
+                }
+                return `<img src="${href}" alt="${text}" title="${title || ''}" />`;
             }
-            return `<a href="${href}" title="${title || ''}" target="_blank">${text}</a>`;
-        };
-
-        // Also fix relative image paths to load from GitHub
-        renderer.image = function(href, title, text) {
-            if (!href.startsWith('http')) {
-                let resolvedPath = basePath + href;
-                resolvedPath = resolvedPath.replace(/\.\//g, '');
-                href = `${GITHUB_RAW_BASE}/${resolvedPath}`;
-            }
-            return `<img src="${href}" alt="${text}" title="${title || ''}" />`;
         };
         
-        marked.setOptions({ renderer });
+        marked.use({ renderer });
         
         dom.content.innerHTML = marked.parse(markdown);
         
@@ -141,9 +140,11 @@ async function loadContent(path) {
         dom.sidebar.classList.remove('open');
         
     } catch (err) {
+        console.error("Error loading content:", err);
         dom.content.innerHTML = `
             <h2>Page not found</h2>
             <p>The requested document could not be loaded from GitHub.</p>
+            <p style="color:red; font-size: 0.8rem; margin-top: 1rem;">Error: ${err.message}</p>
         `;
     }
 }
