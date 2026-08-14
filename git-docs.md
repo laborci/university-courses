@@ -63,22 +63,27 @@ items:
     icon: "home"
     loc: ./welcome.md
     
-  - title: "Webprogramozás 1"
-    icon: "code"
-    site: university-courses@laborci:main/web-programming-1/hu
-      
   - title: "Adatbázisok"
     icon: "database"
     site: db-course@kovacs:main/
+    
+  - title: "Webprogramozás"
+    icon: "code"
+    items:
+      - title: "Webprogramozás 1"
+        site: university-courses@laborci:main/web-programming-1/hu
+      - title: "Webprogramozás 2"
+        site: university-courses@laborci:main/web-programming-2/hu
 ```
 
-### Hivatkozások: `loc` vs. `site`
-A rendszer lelke az, hogyan hivatkozunk tartalmakra. Kétféle paramétert használhatunk a menüpontoknál:
+### Hivatkozások és Csoportosítás (`loc`, `site`, `items`)
+A rendszer lelke az, hogyan hivatkozunk tartalmakra. Egy menüpont 3 dolgot csinálhat:
 
-1. **`loc` (Location - Helybeni tartalom):** 
+1. **`items` (Inline Csoportosítás):** Mint a fenti példában a *Webprogramozás*. Nem hivatkozik külső mappára, pusztán a menüben hoz létre egy lenyíló csoportot, amibe további al-menüpontokat ágyazhatunk be.
+2. **`loc` (Location - Helybeni tartalom):** 
    - Ha egy fájlra mutat (pl. `./README.md`), akkor a dokumentum betöltődik a tartalom területre.
-   - Ha egy mappára mutat, akkor az a mappa almenüként nyílik le a **jelenlegi** oldalsávban.
-2. **`site` (Környezetváltás):**
+   - Ha egy mappára mutat, akkor az a mappa almenüként nyílik le a **jelenlegi** oldalsávban (az adott mappa `config.yml`-je alapján).
+3. **`site` (Környezetváltás):**
    - Ha a hivatkozás `site: ...`, az azt jelenti, hogy egy teljesen új, önálló al-oldalra (pl. egy kurzusra) lépünk.
    - **Működés:** Ekkor a bal oldali navigáció (Sidebar) teljesen "lecserélődik" az új site saját menüjére. 
    - **Breadcrumbs:** A felső sávban (Breadcrumbs / Morzsamenü) viszont megmaradnak az előző site-ok (pl. *PTE MIK > Webprogramozás 1*). Így a kurzus egy önálló, tiszta site lesz a hallgató számára, de bármikor egy kattintással visszaugorhat a fő portálra.
