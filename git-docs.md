@@ -64,8 +64,6 @@ A hivatkozásokhoz egy letisztult, "csomagkezelő-szerű" szintaxist használunk
 
 ```yaml
 name: "Webprogramozás 1 (2026)"
-default_language: hu
-languages: [hu, en]
 
 sidebar:
   - title: "Általános Tudnivalók"
