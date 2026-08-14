@@ -83,22 +83,43 @@ A rendszer lelke az, hogyan hivatkozunk tartalmakra. Kétféle paramétert haszn
    - **Működés:** Ekkor a bal oldali navigáció (Sidebar) teljesen "lecserélődik" az új site saját menüjére. 
    - **Breadcrumbs:** A felső sávban (Breadcrumbs / Morzsamenü) viszont megmaradnak az előző site-ok (pl. *PTE MIK > Webprogramozás 1*). Így a kurzus egy önálló, tiszta site lesz a hallgató számára, de bármikor egy kattintással visszaugorhat a fő portálra.
 
-## Markdown és Frontmatter Képességek
+## Markdown Frontmatter Képességek és a "Pointer" Fájlok
+Annak érdekében, hogy a fájlok önmagukban is hordozzanak metaadatokat, minden Markdown fájl tetején YAML Frontmatter-t használhatunk. 
 
-Mivel a rendszer 100%-ban kliensoldali (Lazy Load), a fájlok metaadataihoz a következőképpen használjuk a YAML Frontmatter-t:
+**Fontos architekturális korlát:** Mivel az alkalmazás 100%-ban kliensoldali és "Lazy Load" módon (csak kattintáskor) tölti be a fájlokat, a keretrendszer nem tudhatja előre, hogy egy adott fájlban milyen Tagek vannak, amíg le nem töltötte. A GitHub Raw API-n ráadásul nem is lehet "mappa tartalmat listázni".
+
+**Hogyan használható mégis a Frontmatter? (A Generátor koncepció)**
+A szerzőknek valójában **soha nem kell kézzel írniuk a `config.yml`-t**. A repóban fut egy generátor szkript (pl. GitHub Action), ami:
+1. Beolvassa a fájlokat és a mappákat.
+2. **Sorrendezés (Order helyett):** A fájlnevek alapján automatikusan sorba rendezi a menüt (pl. `01-bevezeto.md`, `02-halado.md`). Maga a fájlnév úgysem jelenik meg sehol a felhasználónak, így az `order` paraméterre nincs is szükség!
+3. Kinyeri a Frontmatterből a címeket, ikonokat és tageket.
+4. Ezekből a metaadatokból összeállítja és elmenti a `config.yml`-t, amit majd a SvelteKit olvas be.
+
+### A "Pointer" Markdown fájlok (Linkelés tartalom nélkül)
+Ha egy külső kurzust (site) vagy fájlt (loc) akarunk beemelni a menünkbe, nem kell a `config.yml`-t piszkálnunk. Egyszerűen létrehozunk egy üres Markdown fájlt (pl. `03-adatbazis-alapok.md`), amiben **nincs tartalom, csak Frontmatter**:
+
+```yaml
+---
+title: "Adatbázis Alapok (Kovács)"
+icon: "database"
+site: db-course@kovacs:main/
+---
+```
+Amikor a generátor szkript ezen végigfut, látja, hogy ez nem egy valódi dokumentum, hanem egy "mutató" (Pointer). Így a generált `config.yml`-be egy `site` vagy `loc` hivatkozásként fog bekerülni, a SvelteKit pedig már a külső repó felé fogja irányítani a felhasználót.
+
+**Példa normál fájl Frontmatterre:**
 
 ```yaml
 ---
 title: "A Web Architektúrája"
-icon: "globe" # Ikon a menüponthoz
-order: 1 # A generátor szkript ez alapján rakja sorba a config.yml-ben
+icon: "globe"
 hidden: false # Rejtett-e az oldalsávban
-tags: [web, http, kliens-szerver] # Generátor szkript gyűjti ki
+tags: [web, http, kliens-szerver] # A keresőhöz
 ---
 # Ide jön maga a tartalom...
 ```
 
-**Interaktív elemek (Quizek, Videók)**
+### Interaktív elemek (Quizek, Videók)
 A dokumentumok megjelenítését (Layout) nem a Frontmatterből vezéreljük. A Markdown önmagában tartalmazza a logikát kódblokkok (Codeblocks) formájában. 
 
 A SvelteKit parser egyedi Markdown blokkokat ismer fel, például egy kvízt így írhatunk meg magában a Markdown fájlban:
