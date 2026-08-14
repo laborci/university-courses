@@ -114,23 +114,29 @@ navigation:
 A SvelteKit app elindulásakor letölti a globális `site.yml`-t (amit pl. egy központi intézményi repóban tárolunk). Ez felépíti a portál arculatát és a felső navigációs menüt.
 Amikor a hallgató rákattint a "Webprogramozás 1" menüpontra, a rendszer átvált a kurzus nézetre, és elkezdi letölteni az előzőekben tárgyalt mappa szintű `config.yml`-t az adott repóból, felépítve az oldalsávot.
 
-## Markdown Frontmatter Képességek
-Annak érdekében, hogy a fájlok önmagukban is hordozzanak metaadatokat (és ne mindent a `config.yml`-ben kelljen definiálni), minden Markdown fájl tetején YAML Frontmatter-t használunk. 
+## Markdown Frontmatter Képességek (A Lazy-Load probléma)
+Annak érdekében, hogy a fájlok önmagukban is hordozzanak metaadatokat, minden Markdown fájl tetején YAML Frontmatter-t használhatunk. 
 
-**Lehetséges Frontmatter mezők:**
+**Fontos architekturális korlát:** Mivel az alkalmazás 100%-ban kliensoldali és "Lazy Load" módon (csak kattintáskor) tölti be a fájlokat, a keretrendszer nem tudhatja előre, hogy egy adott fájlban milyen Tagek vannak, amíg le nem töltötte. A GitHub Raw API-n ráadásul nem is lehet "mappa tartalmat listázni".
+
+**Hogyan használható mégis a Frontmatter?**
+
+Kétféleképpen:
+1. **Generátor szkripttel (A fa építése):** A Frontmatter elsősorban arra jó, hogy a repóban fusson egy generátor szkript (akár helyileg, akár GitHub Action formájában), ami a pusholáskor végigolvassa a fájlok metaadatait (cím, sorrend, tagek), és ezek alapján **automatikusan legenerálja és frissíti a `config.yml` indexet**. A frontend már csak ezt a kész `config.yml`-t olvassa be (amiben a tagek bekerültek a JSON/YAML fába globális kereséshez).
+2. **Futásidejű renderelés (Layout):** Amikor egy fájlt letölt a kliens, a benne lévő metaadatokat fel tudja használni a megjelenítés módosítására.
+
+**Példa Frontmatter:**
 
 ```yaml
 ---
 title: "A Web Architektúrája"
-short_title: "Web Architektúra" # Ha a menüben rövidebben akarjuk kiírni
-order: 1 # Automatikus rendezéshez, ha a config.yml nem explicit listáz
+order: 1 # A generátor szkript ez alapján rakja sorba a config.yml-ben
 author: "Dr. Laborci"
-date: "2026-08-15"
-layout: "video" # SvelteKit UI: cikk, videó-kártya, interaktív kvíz, stb.
-hidden: false # Rejtett-e az oldalsávban (pl. segédletek)
-tags: [web, http, kliens-szerver] # Globális kereséshez és szűréshez
+layout: "presentation" # SvelteKit UI instrukció: ezt ne cikként, hanem diavetítésként rendereld!
+tags: [web, http, kliens-szerver] # A generátor szkript kigyűjti a config.yml-be a keresőhöz
 ---
 # Ide jön maga a tartalom...
 ```
 
-Ezek az adatok beolvasásra kerülnek a SvelteKit alkalmazásban, így automatikusan legenerálható az oldal címe, egy "Szerző" blokk, az utolsó frissítés dátuma, vagy a tartalomhoz kapcsolódó vizuális elrendezés (pl. videós template, ha a `layout: video`).
+**Mi az a Layout?**
+A `layout` nem a menü felépítését, hanem a **megjelenítést** befolyásolja a betöltés *után*. Ha a SvelteKit beolvas egy letöltött fájlt és látja, hogy `layout: presentation`, akkor nem a hagyományos "olvasó" komponensbe tölti a szöveget, hanem elindít egy interaktív diavetítő (Slider) komponenst. Ugyanígy lehet `layout: quiz` vagy `layout: video`.
