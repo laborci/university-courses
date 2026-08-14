@@ -45,98 +45,69 @@ A végleges keretrendszer a következő modern alapokra épül:
 - **UI Könyvtár:** `atom-forge/ui`, amely biztosítja a prémium, konzisztens megjelenést és a kész, akadálymentes komponenseket.
 - **Adatforrás:** Közvetlen kliensoldali hívások a GitHub Raw API felé (szükség esetén Edge gyorsítótárazással).
 
-## Föderált Konfiguráció és Fájl-szintű Hivatkozások (A "Lego" rendszer)
+## Föderált Konfiguráció és Egységes Schema (A "Lego" rendszer)
 
-Ahelyett, hogy egyetlen gigantikus központi konfigurációs fájlt használnánk, a rendszer teljesen decentralizált: **minden mappának lehet egy saját `config.yml` fájlja**. A menüfa rekurzívan épül fel úgy, hogy a konfigurációk egymásba ágyazzák magukat. 
+Nincs külön "mappa" definíció és "site" definíció. **Minden csomópont (Node) egy és ugyanaz.** A teljes rendszer egyetlen, végtelenül egyszerű YAML sémára épül. 
 
 ### Egyszerűsített URI Szintaxis
-A hivatkozásokhoz egy letisztult, "csomagkezelő-szerű" szintaxist használunk a hosszú, bőbeszédű JSON objektumok helyett:
+A hivatkozásokhoz egy letisztult, csomagkezelő-szerű szintaxist használunk:
+**Formátum:** `repo@oktato:branch/eleresi/ut` (vagy egyszerűen `./relativ-utvonal`)
 
-**Formátum:** `repo@oktato:branch/eleresi/ut`
-
-- **Helyi (local) fájl hivatkozás:** `./bevezeto.md`
-- **Helyi (local) mappa (al-kurzus):** `./masik-mappa` (ilyenkor a rendszer automatikusan a `./masik-mappa/config.yml`-t keresi)
-- **Távoli (remote) Markdown fájl:** `university-courses@laborci:main/web-programming-1/README.md`
-- **Távoli (remote) Mappa (teljes Space beemelése):** `js-masterclass@mas-oktato:master/chapters` (automatikusan a `config.yml`-t húzza be)
-
-### Konfigurációs Példa (YAML)
-Íme egy példa, hogyan néz ki egy letisztult `config.yml` fájl:
+### Konfigurációs Példa (config.yml)
+Minden szinten (legyen az a főoldal vagy egy almappa) így néz ki a konfiguráció:
 
 ```yaml
-title: "Webprogramozás 1"
+title: "PTE MIK Informatikai Kurzusok"
 items:
-  - title: "Általános Tudnivalók"
-    loc: ./README.md
+  - title: "Üdvözlünk"
+    icon: "home"
+    loc: ./welcome.md
     
-  - title: "Követelményrendszer"
-    loc: ./kovetelmenyek.md
+  - title: "Webprogramozás 1"
+    icon: "code"
+    site: university-courses@laborci:main/web-programming-1/hu
       
-  - title: "1-3. Hét: Web Alapok (Laborci)"
-    loc: university-courses@laborci:main/web-programming-1/hu/01-what-is-the-web
-      
-  - title: "4-6. Hét: Haladó JavaScript"
-    loc: js-masterclass@mas-oktato:master/04-advanced-js
+  - title: "Adatbázisok"
+    icon: "database"
+    site: db-course@kovacs:main/
 ```
 
-### A hivatkozások (loc) működése:
-A feldolgozó (parser) a `loc` paraméter végződéséből okosan kitalálja, mit kell tennie:
-1. **Dokumentum:** Ha a `loc` egy `.md` fájlra végződik (pl. `./README.md`), akkor azt egyszerű tartalomként jeleníti meg.
-2. **Almenü / Space:** Ha a `loc` egy mappára mutat (nincs kiterjesztése, pl. `./folder` vagy egy távoli mappa), akkor a rendszer tudja, hogy ez egy almenü. Ekkor letölti az adott mappában lévő `config.yml`-t, és annak a tartalmát (a benne lévő `items` listát) rekurzívan beilleszti a jelenlegi menüfa alá.
+### Hivatkozások: `loc` vs. `site`
+A rendszer lelke az, hogyan hivatkozunk tartalmakra. Kétféle paramétert használhatunk a menüpontoknál:
 
-## A Site Definíciója (site.yml)
-Az eddigiek egy adott *Space* (mappa/kurzus) felépítését írták le. De mi történik, ha valaki csak megnyitja a gyökér URL-t, például a `git-docs.pte.hu`-t?
-Erre szolgál a **Site Definíció** (pl. egy globális `site.yml`), amely magát a portált írja le. Ez tartalmazza a globális navigációt és a kiemelt kurzusok katalógusát.
+1. **`loc` (Location - Helybeni tartalom):** 
+   - Ha egy fájlra mutat (pl. `./README.md`), akkor a dokumentum betöltődik a tartalom területre.
+   - Ha egy mappára mutat, akkor az a mappa almenüként nyílik le a **jelenlegi** oldalsávban.
+2. **`site` (Környezetváltás):**
+   - Ha a hivatkozás `site: ...`, az azt jelenti, hogy egy teljesen új, önálló al-oldalra (pl. egy kurzusra) lépünk.
+   - **Működés:** Ekkor a bal oldali navigáció (Sidebar) teljesen "lecserélődik" az új site saját menüjére. 
+   - **Breadcrumbs:** A felső sávban (Breadcrumbs / Morzsamenü) viszont megmaradnak az előző site-ok (pl. *PTE MIK > Webprogramozás 1*). Így a kurzus egy önálló, tiszta site lesz a hallgató számára, de bármikor egy kattintással visszaugorhat a fő portálra.
 
-```yaml
-name: "PTE MIK Informatikai Kurzusok"
-logo: "https://ttk.pte.hu/logo.png"
+## Markdown és Frontmatter Képességek
 
-# A főoldal, amit betöltünk, ha valaki megnyitja a gyökér URL-t
-home: 
-  loc: pte-mik-docs@admin:main/welcome.md
-
-# A felső globális navigációs sáv (Top Navbar)
-navigation:
-  - title: "Oktatás (BSc)"
-    items:
-      - title: "Webprogramozás 1 (Nappali)"
-        loc: university-courses@laborci:main/web-programming-1/hu
-      - title: "Adatbázisok"
-        loc: db-course@kovacs:main/
-        
-  - title: "Kutatás & Projektek"
-    items:
-      - title: "Atom-Forge EU Dokumentáció"
-        loc: atom-forge-docs@laborci:main/
-```
-
-**Hogyan működik?**
-A SvelteKit app elindulásakor letölti a globális `site.yml`-t (amit pl. egy központi intézményi repóban tárolunk). Ez felépíti a portál arculatát és a felső navigációs menüt.
-Amikor a hallgató rákattint a "Webprogramozás 1" menüpontra, a rendszer átvált a kurzus nézetre, és elkezdi letölteni az előzőekben tárgyalt mappa szintű `config.yml`-t az adott repóból, felépítve az oldalsávot.
-
-## Markdown Frontmatter Képességek (A Lazy-Load probléma)
-Annak érdekében, hogy a fájlok önmagukban is hordozzanak metaadatokat, minden Markdown fájl tetején YAML Frontmatter-t használhatunk. 
-
-**Fontos architekturális korlát:** Mivel az alkalmazás 100%-ban kliensoldali és "Lazy Load" módon (csak kattintáskor) tölti be a fájlokat, a keretrendszer nem tudhatja előre, hogy egy adott fájlban milyen Tagek vannak, amíg le nem töltötte. A GitHub Raw API-n ráadásul nem is lehet "mappa tartalmat listázni".
-
-**Hogyan használható mégis a Frontmatter?**
-
-Kétféleképpen:
-1. **Generátor szkripttel (A fa építése):** A Frontmatter elsősorban arra jó, hogy a repóban fusson egy generátor szkript (akár helyileg, akár GitHub Action formájában), ami a pusholáskor végigolvassa a fájlok metaadatait (cím, sorrend, tagek), és ezek alapján **automatikusan legenerálja és frissíti a `config.yml` indexet**. A frontend már csak ezt a kész `config.yml`-t olvassa be (amiben a tagek bekerültek a JSON/YAML fába globális kereséshez).
-2. **Futásidejű renderelés (Layout):** Amikor egy fájlt letölt a kliens, a benne lévő metaadatokat fel tudja használni a megjelenítés módosítására.
-
-**Példa Frontmatter:**
+Mivel a rendszer 100%-ban kliensoldali (Lazy Load), a fájlok metaadataihoz a következőképpen használjuk a YAML Frontmatter-t:
 
 ```yaml
 ---
 title: "A Web Architektúrája"
+icon: "globe" # Ikon a menüponthoz
 order: 1 # A generátor szkript ez alapján rakja sorba a config.yml-ben
-author: "Dr. Laborci"
-layout: "presentation" # SvelteKit UI instrukció: ezt ne cikként, hanem diavetítésként rendereld!
-tags: [web, http, kliens-szerver] # A generátor szkript kigyűjti a config.yml-be a keresőhöz
+hidden: false # Rejtett-e az oldalsávban
+tags: [web, http, kliens-szerver] # Generátor szkript gyűjti ki
 ---
 # Ide jön maga a tartalom...
 ```
 
-**Mi az a Layout?**
-A `layout` nem a menü felépítését, hanem a **megjelenítést** befolyásolja a betöltés *után*. Ha a SvelteKit beolvas egy letöltött fájlt és látja, hogy `layout: presentation`, akkor nem a hagyományos "olvasó" komponensbe tölti a szöveget, hanem elindít egy interaktív diavetítő (Slider) komponenst. Ugyanígy lehet `layout: quiz` vagy `layout: video`.
+**Interaktív elemek (Quizek, Videók)**
+A dokumentumok megjelenítését (Layout) nem a Frontmatterből vezéreljük. A Markdown önmagában tartalmazza a logikát kódblokkok (Codeblocks) formájában. 
+
+A SvelteKit parser egyedi Markdown blokkokat ismer fel, például egy kvízt így írhatunk meg magában a Markdown fájlban:
+```markdown
+```quiz
+question: "Mi a HTTP?"
+options:
+  - "Protokoll"
+  - "Szerver"
+answer: 0
+```
+Ezt a SvelteKit automatikusan egy interaktív, kattintható Kvíz komponenssé alakítja a szöveg közepén! Ugyanígy beágyazhatunk YouTube videókat vagy interaktív ábrákat is, megőrizve a Markdown hordozhatóságát.
