@@ -111,22 +111,46 @@ async function loadContent(path) {
         const basePath = path.substring(0, path.lastIndexOf('/') + 1);
         
         const renderer = {
-            link(href, title, text) {
+            link(arg1, arg2, arg3) {
+                let href = arg1;
+                let title = arg2;
+                let text = arg3;
+                // Modern marked.js passes a token object as the first argument
+                if (typeof arg1 === 'object' && arg1 !== null) {
+                    href = arg1.href || '';
+                    title = arg1.title || '';
+                    text = arg1.text || '';
+                    // For newer marked, the inner HTML is often parsed already, but text is safe.
+                    // If we need fully parsed text, we would call this.parser.parse(arg1.tokens), 
+                    // but for simplicity, we just use arg1.text.
+                }
+                href = href || '';
+                
                 if (href.endsWith('.md') && !href.startsWith('http')) {
                     // Convert relative markdown links to hash routes
                     let resolvedPath = basePath + href;
                     resolvedPath = resolvedPath.replace(/\.\//g, '');
-                    return `<a href="#/${resolvedPath}" title="${title || ''}">${text}</a>`;
+                    return `<a href="#/${resolvedPath}" title="${title || ''}">${text || ''}</a>`;
                 }
-                return `<a href="${href}" title="${title || ''}" target="_blank">${text}</a>`;
+                return `<a href="${href}" title="${title || ''}" target="_blank">${text || ''}</a>`;
             },
-            image(href, title, text) {
+            image(arg1, arg2, arg3) {
+                let href = arg1;
+                let title = arg2;
+                let text = arg3;
+                if (typeof arg1 === 'object' && arg1 !== null) {
+                    href = arg1.href || '';
+                    title = arg1.title || '';
+                    text = arg1.text || '';
+                }
+                href = href || '';
+                
                 if (!href.startsWith('http')) {
                     let resolvedPath = basePath + href;
                     resolvedPath = resolvedPath.replace(/\.\//g, '');
                     href = `${GITHUB_RAW_BASE}/${resolvedPath}`;
                 }
-                return `<img src="${href}" alt="${text}" title="${title || ''}" />`;
+                return `<img src="${href}" alt="${text || ''}" title="${title || ''}" />`;
             }
         };
         
