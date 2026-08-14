@@ -1,0 +1,949 @@
+{
+  "languages": [
+    "hu",
+    "en"
+  ],
+  "defaultLanguage": "hu",
+  "sidebar": {
+    "hu": [
+      {
+        "title": "General",
+        "path": "hu",
+        "files": [
+          {
+            "title": "Introduction",
+            "path": "hu/README.md"
+          },
+          {
+            "title": "Assessment",
+            "path": "hu/assessment.md"
+          },
+          {
+            "title": "Course Outline",
+            "path": "hu/course-outline.md"
+          },
+          {
+            "title": "Glossary",
+            "path": "hu/glossary.md"
+          },
+          {
+            "title": "Homework Submission",
+            "path": "hu/homework-submission.md"
+          },
+          {
+            "title": "Practical Work",
+            "path": "hu/practical-work.md"
+          },
+          {
+            "title": "Presentation Template",
+            "path": "hu/presentation-template.md"
+          },
+          {
+            "title": "Student Presentations",
+            "path": "hu/student-presentations.md"
+          },
+          {
+            "title": "Syllabus",
+            "path": "hu/syllabus.md"
+          },
+          {
+            "title": "Technical Setup",
+            "path": "hu/technical-setup.md"
+          }
+        ]
+      },
+      {
+        "title": "01 What Is The Web",
+        "path": "hu/01-what-is-the-web",
+        "files": [
+          {
+            "title": "Overview",
+            "path": "hu/01-what-is-the-web/README.md"
+          },
+          {
+            "title": "01 Internet And Www",
+            "path": "hu/01-what-is-the-web/01-internet-and-www.md"
+          },
+          {
+            "title": "02 Why Learn Web Programming",
+            "path": "hu/01-what-is-the-web/02-why-learn-web-programming.md"
+          },
+          {
+            "title": "03 Web Evolution",
+            "path": "hu/01-what-is-the-web/03-web-evolution.md"
+          },
+          {
+            "title": "04 Web Actors",
+            "path": "hu/01-what-is-the-web/04-web-actors.md"
+          },
+          {
+            "title": "05 Client Server And Multitier",
+            "path": "hu/01-what-is-the-web/05-client-server-and-multitier.md"
+          },
+          {
+            "title": "06 Web Standards And Interoperability",
+            "path": "hu/01-what-is-the-web/06-web-standards-and-interoperability.md"
+          },
+          {
+            "title": "Demo",
+            "path": "hu/01-what-is-the-web/demo.md"
+          },
+          {
+            "title": "Homework",
+            "path": "hu/01-what-is-the-web/homework.md"
+          }
+        ]
+      },
+      {
+        "title": "02 Web Request Lifecycle",
+        "path": "hu/02-web-request-lifecycle",
+        "files": [
+          {
+            "title": "Overview",
+            "path": "hu/02-web-request-lifecycle/README.md"
+          },
+          {
+            "title": "01 Url Uri Domain Ip And Port",
+            "path": "hu/02-web-request-lifecycle/01-url-uri-domain-ip-and-port.md"
+          },
+          {
+            "title": "02 Dns Resolution",
+            "path": "hu/02-web-request-lifecycle/02-dns-resolution.md"
+          },
+          {
+            "title": "03 Tcp Tls And Secure Connection",
+            "path": "hu/02-web-request-lifecycle/03-tcp-tls-and-secure-connection.md"
+          },
+          {
+            "title": "04 Proxy Reverse Proxy And Cdn",
+            "path": "hu/02-web-request-lifecycle/04-proxy-reverse-proxy-and-cdn.md"
+          },
+          {
+            "title": "05 Web Request Lifecycle",
+            "path": "hu/02-web-request-lifecycle/05-web-request-lifecycle.md"
+          },
+          {
+            "title": "Demo",
+            "path": "hu/02-web-request-lifecycle/demo.md"
+          },
+          {
+            "title": "Homework",
+            "path": "hu/02-web-request-lifecycle/homework.md"
+          }
+        ]
+      },
+      {
+        "title": "03 Http And Https",
+        "path": "hu/03-http-and-https",
+        "files": [
+          {
+            "title": "Overview",
+            "path": "hu/03-http-and-https/README.md"
+          },
+          {
+            "title": "01 Http Request Response Model",
+            "path": "hu/03-http-and-https/01-http-request-response-model.md"
+          },
+          {
+            "title": "02 Http Methods",
+            "path": "hu/03-http-and-https/02-http-methods.md"
+          },
+          {
+            "title": "03 Http Status Codes",
+            "path": "hu/03-http-and-https/03-http-status-codes.md"
+          },
+          {
+            "title": "04 Headers Body And Content Types",
+            "path": "hu/03-http-and-https/04-headers-body-and-content-types.md"
+          },
+          {
+            "title": "05 Http Caching",
+            "path": "hu/03-http-and-https/05-http-caching.md"
+          },
+          {
+            "title": "06 Https From The Users Perspective",
+            "path": "hu/03-http-and-https/06-https-from-the-users-perspective.md"
+          },
+          {
+            "title": "Demo",
+            "path": "hu/03-http-and-https/demo.md"
+          },
+          {
+            "title": "Homework",
+            "path": "hu/03-http-and-https/homework.md"
+          }
+        ]
+      },
+      {
+        "title": "04 Browsers And Web Documents",
+        "path": "hu/04-browsers-and-web-documents",
+        "files": [
+          {
+            "title": "Overview",
+            "path": "hu/04-browsers-and-web-documents/README.md"
+          },
+          {
+            "title": "01 Html Css And Javascript",
+            "path": "hu/04-browsers-and-web-documents/01-html-css-and-javascript.md"
+          },
+          {
+            "title": "02 Dom And Document Structure",
+            "path": "hu/04-browsers-and-web-documents/02-dom-and-document-structure.md"
+          },
+          {
+            "title": "03 Browser Rendering Process",
+            "path": "hu/04-browsers-and-web-documents/03-browser-rendering-process.md"
+          },
+          {
+            "title": "04 Semantic Html",
+            "path": "hu/04-browsers-and-web-documents/04-semantic-html.md"
+          },
+          {
+            "title": "05 Loading Web Resources",
+            "path": "hu/04-browsers-and-web-documents/05-loading-web-resources.md"
+          },
+          {
+            "title": "06 Browser Compatibility",
+            "path": "hu/04-browsers-and-web-documents/06-browser-compatibility.md"
+          },
+          {
+            "title": "07 Browser Capabilities",
+            "path": "hu/04-browsers-and-web-documents/07-browser-capabilities.md"
+          },
+          {
+            "title": "08 Service Workers And Offline",
+            "path": "hu/04-browsers-and-web-documents/08-service-workers-and-offline.md"
+          },
+          {
+            "title": "Demo",
+            "path": "hu/04-browsers-and-web-documents/demo.md"
+          },
+          {
+            "title": "Homework",
+            "path": "hu/04-browsers-and-web-documents/homework.md"
+          }
+        ]
+      },
+      {
+        "title": "05 Web Applications And Rendering",
+        "path": "hu/05-web-applications-and-rendering",
+        "files": [
+          {
+            "title": "Overview",
+            "path": "hu/05-web-applications-and-rendering/README.md"
+          },
+          {
+            "title": "01 Multi Page And Single Page Applications",
+            "path": "hu/05-web-applications-and-rendering/01-multi-page-and-single-page-applications.md"
+          },
+          {
+            "title": "02 Client Side Rendering",
+            "path": "hu/05-web-applications-and-rendering/02-client-side-rendering.md"
+          },
+          {
+            "title": "03 Server Side Rendering",
+            "path": "hu/05-web-applications-and-rendering/03-server-side-rendering.md"
+          },
+          {
+            "title": "04 Static Site Generation",
+            "path": "hu/05-web-applications-and-rendering/04-static-site-generation.md"
+          },
+          {
+            "title": "05 Interactivity Navigation And Client State",
+            "path": "hu/05-web-applications-and-rendering/05-interactivity-navigation-and-client-state.md"
+          },
+          {
+            "title": "06 Architecture Selection",
+            "path": "hu/05-web-applications-and-rendering/06-architecture-selection.md"
+          },
+          {
+            "title": "07 Case Study News Shop And Email",
+            "path": "hu/05-web-applications-and-rendering/07-case-study-news-shop-and-email.md"
+          },
+          {
+            "title": "Homework",
+            "path": "hu/05-web-applications-and-rendering/homework.md"
+          }
+        ]
+      },
+      {
+        "title": "06 Web Data And Apis",
+        "path": "hu/06-web-data-and-apis",
+        "files": [
+          {
+            "title": "Overview",
+            "path": "hu/06-web-data-and-apis/README.md"
+          },
+          {
+            "title": "01 Api Concept And Role",
+            "path": "hu/06-web-data-and-apis/01-api-concept-and-role.md"
+          },
+          {
+            "title": "02 Json Xml And Structured Data",
+            "path": "hu/06-web-data-and-apis/02-json-xml-and-structured-data.md"
+          },
+          {
+            "title": "03 Rest Principles",
+            "path": "hu/06-web-data-and-apis/03-rest-principles.md"
+          },
+          {
+            "title": "04 Graphql And Rpc",
+            "path": "hu/06-web-data-and-apis/04-graphql-and-rpc.md"
+          },
+          {
+            "title": "05 Real Time Web Communication",
+            "path": "hu/06-web-data-and-apis/05-real-time-web-communication.md"
+          },
+          {
+            "title": "06 Webhooks Versioning Compatibility And Documentation",
+            "path": "hu/06-web-data-and-apis/06-webhooks-versioning-compatibility-and-documentation.md"
+          },
+          {
+            "title": "Demo",
+            "path": "hu/06-web-data-and-apis/demo.md"
+          },
+          {
+            "title": "Homework",
+            "path": "hu/06-web-data-and-apis/homework.md"
+          }
+        ]
+      },
+      {
+        "title": "07 Identity And Access",
+        "path": "hu/07-identity-and-access",
+        "files": [
+          {
+            "title": "Overview",
+            "path": "hu/07-identity-and-access/README.md"
+          },
+          {
+            "title": "01 Stateless Http And State",
+            "path": "hu/07-identity-and-access/01-stateless-http-and-state.md"
+          },
+          {
+            "title": "02 Cookies Sessions And Tokens",
+            "path": "hu/07-identity-and-access/02-cookies-sessions-and-tokens.md"
+          },
+          {
+            "title": "03 Authentication And Authorization",
+            "path": "hu/07-identity-and-access/03-authentication-and-authorization.md"
+          },
+          {
+            "title": "04 Oauth And Openid Connect",
+            "path": "hu/07-identity-and-access/04-oauth-and-openid-connect.md"
+          },
+          {
+            "title": "05 Single Sign On",
+            "path": "hu/07-identity-and-access/05-single-sign-on.md"
+          },
+          {
+            "title": "06 Third Party Login Flow",
+            "path": "hu/07-identity-and-access/06-third-party-login-flow.md"
+          },
+          {
+            "title": "07 Case Study Sign In With Google",
+            "path": "hu/07-identity-and-access/07-case-study-sign-in-with-google.md"
+          },
+          {
+            "title": "Homework",
+            "path": "hu/07-identity-and-access/homework.md"
+          }
+        ]
+      },
+      {
+        "title": "08 Web Security",
+        "path": "hu/08-web-security",
+        "files": [
+          {
+            "title": "Overview",
+            "path": "hu/08-web-security/README.md"
+          },
+          {
+            "title": "01 Web Threat Modeling",
+            "path": "hu/08-web-security/01-web-threat-modeling.md"
+          },
+          {
+            "title": "02 Same Origin Policy And Cors",
+            "path": "hu/08-web-security/02-same-origin-policy-and-cors.md"
+          },
+          {
+            "title": "03 Xss Csrf And Injection",
+            "path": "hu/08-web-security/03-xss-csrf-and-injection.md"
+          },
+          {
+            "title": "04 Passwords Mfa And Session Security",
+            "path": "hu/08-web-security/04-passwords-mfa-and-session-security.md"
+          },
+          {
+            "title": "05 Https And Secure Communication",
+            "path": "hu/08-web-security/05-https-and-secure-communication.md"
+          },
+          {
+            "title": "06 Owasp And Shared Security Responsibility",
+            "path": "hu/08-web-security/06-owasp-and-shared-security-responsibility.md"
+          },
+          {
+            "title": "07 Case Study Flawed Login And Data Submission",
+            "path": "hu/08-web-security/07-case-study-flawed-login-and-data-submission.md"
+          },
+          {
+            "title": "Homework",
+            "path": "hu/08-web-security/homework.md"
+          }
+        ]
+      },
+      {
+        "title": "09 Quality Web",
+        "path": "hu/09-quality-web",
+        "files": [
+          {
+            "title": "Overview",
+            "path": "hu/09-quality-web/README.md"
+          },
+          {
+            "title": "01 Accessibility And Inclusive Design",
+            "path": "hu/09-quality-web/01-accessibility-and-inclusive-design.md"
+          },
+          {
+            "title": "02 Semantics Keyboard And Screen Readers",
+            "path": "hu/09-quality-web/02-semantics-keyboard-and-screen-readers.md"
+          },
+          {
+            "title": "03 Responsive And Device Independent Design",
+            "path": "hu/09-quality-web/03-responsive-and-device-independent-design.md"
+          },
+          {
+            "title": "04 Web Performance From The User Perspective",
+            "path": "hu/09-quality-web/04-web-performance-from-the-user-perspective.md"
+          },
+          {
+            "title": "05 Seo And Aio Basics",
+            "path": "hu/09-quality-web/05-seo-and-aio-basics.md"
+          },
+          {
+            "title": "06 Privacy Tracking Consent And Digital Ethics",
+            "path": "hu/09-quality-web/06-privacy-tracking-consent-and-digital-ethics.md"
+          },
+          {
+            "title": "Demo",
+            "path": "hu/09-quality-web/demo.md"
+          },
+          {
+            "title": "Homework",
+            "path": "hu/09-quality-web/homework.md"
+          }
+        ]
+      },
+      {
+        "title": "10 Reliable And High Performance Web",
+        "path": "hu/10-reliable-and-high-performance-web",
+        "files": [
+          {
+            "title": "Overview",
+            "path": "hu/10-reliable-and-high-performance-web/README.md"
+          },
+          {
+            "title": "01 Service Quality And Availability",
+            "path": "hu/10-reliable-and-high-performance-web/01-service-quality-and-availability.md"
+          },
+          {
+            "title": "02 Errors Handling And User Communication",
+            "path": "hu/10-reliable-and-high-performance-web/02-errors-handling-and-user-communication.md"
+          },
+          {
+            "title": "03 Performance Response Load And Resources",
+            "path": "hu/10-reliable-and-high-performance-web/03-performance-response-load-and-resources.md"
+          },
+          {
+            "title": "04 Cache Cdn And Geographic Distance",
+            "path": "hu/10-reliable-and-high-performance-web/04-cache-cdn-and-geographic-distance.md"
+          },
+          {
+            "title": "05 Load Peaks Graceful Degradation And Observability",
+            "path": "hu/10-reliable-and-high-performance-web/05-load-peaks-graceful-degradation-and-observability.md"
+          },
+          {
+            "title": "06 Performance Security And Cost Tradeoffs",
+            "path": "hu/10-reliable-and-high-performance-web/06-performance-security-and-cost-tradeoffs.md"
+          },
+          {
+            "title": "07 Case Study Overloaded Ticketing Or University System",
+            "path": "hu/10-reliable-and-high-performance-web/07-case-study-overloaded-ticketing-or-university-system.md"
+          },
+          {
+            "title": "Homework",
+            "path": "hu/10-reliable-and-high-performance-web/homework.md"
+          }
+        ]
+      }
+    ],
+    "en": [
+      {
+        "title": "General",
+        "path": "en",
+        "files": [
+          {
+            "title": "Introduction",
+            "path": "en/README.md"
+          },
+          {
+            "title": "Assessment",
+            "path": "en/assessment.md"
+          },
+          {
+            "title": "Course Outline",
+            "path": "en/course-outline.md"
+          },
+          {
+            "title": "Glossary",
+            "path": "en/glossary.md"
+          },
+          {
+            "title": "Homework Submission",
+            "path": "en/homework-submission.md"
+          },
+          {
+            "title": "Presentation Template",
+            "path": "en/presentation-template.md"
+          },
+          {
+            "title": "Student Presentations",
+            "path": "en/student-presentations.md"
+          },
+          {
+            "title": "Syllabus",
+            "path": "en/syllabus.md"
+          },
+          {
+            "title": "Technical Setup",
+            "path": "en/technical-setup.md"
+          }
+        ]
+      },
+      {
+        "title": "01 What Is The Web",
+        "path": "en/01-what-is-the-web",
+        "files": [
+          {
+            "title": "Overview",
+            "path": "en/01-what-is-the-web/README.md"
+          },
+          {
+            "title": "01 Internet And Www",
+            "path": "en/01-what-is-the-web/01-internet-and-www.md"
+          },
+          {
+            "title": "02 Why Learn Web Programming",
+            "path": "en/01-what-is-the-web/02-why-learn-web-programming.md"
+          },
+          {
+            "title": "03 Web Evolution",
+            "path": "en/01-what-is-the-web/03-web-evolution.md"
+          },
+          {
+            "title": "04 Web Actors",
+            "path": "en/01-what-is-the-web/04-web-actors.md"
+          },
+          {
+            "title": "05 Client Server And Multitier",
+            "path": "en/01-what-is-the-web/05-client-server-and-multitier.md"
+          },
+          {
+            "title": "06 Web Standards And Interoperability",
+            "path": "en/01-what-is-the-web/06-web-standards-and-interoperability.md"
+          },
+          {
+            "title": "Demo",
+            "path": "en/01-what-is-the-web/demo.md"
+          },
+          {
+            "title": "Homework",
+            "path": "en/01-what-is-the-web/homework.md"
+          }
+        ]
+      },
+      {
+        "title": "02 Web Request Lifecycle",
+        "path": "en/02-web-request-lifecycle",
+        "files": [
+          {
+            "title": "Overview",
+            "path": "en/02-web-request-lifecycle/README.md"
+          },
+          {
+            "title": "01 Url Uri Domain Ip And Port",
+            "path": "en/02-web-request-lifecycle/01-url-uri-domain-ip-and-port.md"
+          },
+          {
+            "title": "02 Dns Resolution",
+            "path": "en/02-web-request-lifecycle/02-dns-resolution.md"
+          },
+          {
+            "title": "03 Tcp Tls And Secure Connection",
+            "path": "en/02-web-request-lifecycle/03-tcp-tls-and-secure-connection.md"
+          },
+          {
+            "title": "04 Proxy Reverse Proxy And Cdn",
+            "path": "en/02-web-request-lifecycle/04-proxy-reverse-proxy-and-cdn.md"
+          },
+          {
+            "title": "05 Web Request Lifecycle",
+            "path": "en/02-web-request-lifecycle/05-web-request-lifecycle.md"
+          },
+          {
+            "title": "Demo",
+            "path": "en/02-web-request-lifecycle/demo.md"
+          },
+          {
+            "title": "Homework",
+            "path": "en/02-web-request-lifecycle/homework.md"
+          }
+        ]
+      },
+      {
+        "title": "03 Http And Https",
+        "path": "en/03-http-and-https",
+        "files": [
+          {
+            "title": "Overview",
+            "path": "en/03-http-and-https/README.md"
+          },
+          {
+            "title": "01 Http Request Response Model",
+            "path": "en/03-http-and-https/01-http-request-response-model.md"
+          },
+          {
+            "title": "02 Http Methods",
+            "path": "en/03-http-and-https/02-http-methods.md"
+          },
+          {
+            "title": "03 Http Status Codes",
+            "path": "en/03-http-and-https/03-http-status-codes.md"
+          },
+          {
+            "title": "04 Headers Body And Content Types",
+            "path": "en/03-http-and-https/04-headers-body-and-content-types.md"
+          },
+          {
+            "title": "05 Http Caching",
+            "path": "en/03-http-and-https/05-http-caching.md"
+          },
+          {
+            "title": "06 Https From The Users Perspective",
+            "path": "en/03-http-and-https/06-https-from-the-users-perspective.md"
+          },
+          {
+            "title": "Demo",
+            "path": "en/03-http-and-https/demo.md"
+          },
+          {
+            "title": "Homework",
+            "path": "en/03-http-and-https/homework.md"
+          }
+        ]
+      },
+      {
+        "title": "04 Browsers And Web Documents",
+        "path": "en/04-browsers-and-web-documents",
+        "files": [
+          {
+            "title": "Overview",
+            "path": "en/04-browsers-and-web-documents/README.md"
+          },
+          {
+            "title": "01 Html Css And Javascript",
+            "path": "en/04-browsers-and-web-documents/01-html-css-and-javascript.md"
+          },
+          {
+            "title": "02 Dom And Document Structure",
+            "path": "en/04-browsers-and-web-documents/02-dom-and-document-structure.md"
+          },
+          {
+            "title": "03 Browser Rendering Process",
+            "path": "en/04-browsers-and-web-documents/03-browser-rendering-process.md"
+          },
+          {
+            "title": "04 Semantic Html",
+            "path": "en/04-browsers-and-web-documents/04-semantic-html.md"
+          },
+          {
+            "title": "05 Loading Web Resources",
+            "path": "en/04-browsers-and-web-documents/05-loading-web-resources.md"
+          },
+          {
+            "title": "06 Browser Compatibility",
+            "path": "en/04-browsers-and-web-documents/06-browser-compatibility.md"
+          },
+          {
+            "title": "07 Browser Capabilities",
+            "path": "en/04-browsers-and-web-documents/07-browser-capabilities.md"
+          },
+          {
+            "title": "08 Service Workers And Offline",
+            "path": "en/04-browsers-and-web-documents/08-service-workers-and-offline.md"
+          },
+          {
+            "title": "Demo",
+            "path": "en/04-browsers-and-web-documents/demo.md"
+          },
+          {
+            "title": "Homework",
+            "path": "en/04-browsers-and-web-documents/homework.md"
+          }
+        ]
+      },
+      {
+        "title": "05 Web Applications And Rendering",
+        "path": "en/05-web-applications-and-rendering",
+        "files": [
+          {
+            "title": "Overview",
+            "path": "en/05-web-applications-and-rendering/README.md"
+          },
+          {
+            "title": "01 Multi Page And Single Page Applications",
+            "path": "en/05-web-applications-and-rendering/01-multi-page-and-single-page-applications.md"
+          },
+          {
+            "title": "02 Client Side Rendering",
+            "path": "en/05-web-applications-and-rendering/02-client-side-rendering.md"
+          },
+          {
+            "title": "03 Server Side Rendering",
+            "path": "en/05-web-applications-and-rendering/03-server-side-rendering.md"
+          },
+          {
+            "title": "04 Static Site Generation",
+            "path": "en/05-web-applications-and-rendering/04-static-site-generation.md"
+          },
+          {
+            "title": "05 Interactivity Navigation And Client State",
+            "path": "en/05-web-applications-and-rendering/05-interactivity-navigation-and-client-state.md"
+          },
+          {
+            "title": "06 Architecture Selection",
+            "path": "en/05-web-applications-and-rendering/06-architecture-selection.md"
+          },
+          {
+            "title": "07 Case Study News Shop And Email",
+            "path": "en/05-web-applications-and-rendering/07-case-study-news-shop-and-email.md"
+          },
+          {
+            "title": "Homework",
+            "path": "en/05-web-applications-and-rendering/homework.md"
+          }
+        ]
+      },
+      {
+        "title": "06 Web Data And Apis",
+        "path": "en/06-web-data-and-apis",
+        "files": [
+          {
+            "title": "Overview",
+            "path": "en/06-web-data-and-apis/README.md"
+          },
+          {
+            "title": "01 Api Concept And Role",
+            "path": "en/06-web-data-and-apis/01-api-concept-and-role.md"
+          },
+          {
+            "title": "02 Json Xml And Structured Data",
+            "path": "en/06-web-data-and-apis/02-json-xml-and-structured-data.md"
+          },
+          {
+            "title": "03 Rest Principles",
+            "path": "en/06-web-data-and-apis/03-rest-principles.md"
+          },
+          {
+            "title": "04 Graphql And Rpc",
+            "path": "en/06-web-data-and-apis/04-graphql-and-rpc.md"
+          },
+          {
+            "title": "05 Real Time Web Communication",
+            "path": "en/06-web-data-and-apis/05-real-time-web-communication.md"
+          },
+          {
+            "title": "06 Webhooks Versioning Compatibility And Documentation",
+            "path": "en/06-web-data-and-apis/06-webhooks-versioning-compatibility-and-documentation.md"
+          },
+          {
+            "title": "Demo",
+            "path": "en/06-web-data-and-apis/demo.md"
+          },
+          {
+            "title": "Homework",
+            "path": "en/06-web-data-and-apis/homework.md"
+          }
+        ]
+      },
+      {
+        "title": "07 Identity And Access",
+        "path": "en/07-identity-and-access",
+        "files": [
+          {
+            "title": "Overview",
+            "path": "en/07-identity-and-access/README.md"
+          },
+          {
+            "title": "01 Stateless Http And State",
+            "path": "en/07-identity-and-access/01-stateless-http-and-state.md"
+          },
+          {
+            "title": "02 Cookies Sessions And Tokens",
+            "path": "en/07-identity-and-access/02-cookies-sessions-and-tokens.md"
+          },
+          {
+            "title": "03 Authentication And Authorization",
+            "path": "en/07-identity-and-access/03-authentication-and-authorization.md"
+          },
+          {
+            "title": "04 Oauth And Openid Connect",
+            "path": "en/07-identity-and-access/04-oauth-and-openid-connect.md"
+          },
+          {
+            "title": "05 Single Sign On",
+            "path": "en/07-identity-and-access/05-single-sign-on.md"
+          },
+          {
+            "title": "06 Third Party Login Flow",
+            "path": "en/07-identity-and-access/06-third-party-login-flow.md"
+          },
+          {
+            "title": "07 Case Study Sign In With Google",
+            "path": "en/07-identity-and-access/07-case-study-sign-in-with-google.md"
+          },
+          {
+            "title": "Homework",
+            "path": "en/07-identity-and-access/homework.md"
+          }
+        ]
+      },
+      {
+        "title": "08 Web Security",
+        "path": "en/08-web-security",
+        "files": [
+          {
+            "title": "Overview",
+            "path": "en/08-web-security/README.md"
+          },
+          {
+            "title": "01 Web Threat Modeling",
+            "path": "en/08-web-security/01-web-threat-modeling.md"
+          },
+          {
+            "title": "02 Same Origin Policy And Cors",
+            "path": "en/08-web-security/02-same-origin-policy-and-cors.md"
+          },
+          {
+            "title": "03 Xss Csrf And Injection",
+            "path": "en/08-web-security/03-xss-csrf-and-injection.md"
+          },
+          {
+            "title": "04 Passwords Mfa And Session Security",
+            "path": "en/08-web-security/04-passwords-mfa-and-session-security.md"
+          },
+          {
+            "title": "05 Https And Secure Communication",
+            "path": "en/08-web-security/05-https-and-secure-communication.md"
+          },
+          {
+            "title": "06 Owasp And Shared Security Responsibility",
+            "path": "en/08-web-security/06-owasp-and-shared-security-responsibility.md"
+          },
+          {
+            "title": "07 Case Study Flawed Login And Data Submission",
+            "path": "en/08-web-security/07-case-study-flawed-login-and-data-submission.md"
+          },
+          {
+            "title": "Homework",
+            "path": "en/08-web-security/homework.md"
+          }
+        ]
+      },
+      {
+        "title": "09 Quality Web",
+        "path": "en/09-quality-web",
+        "files": [
+          {
+            "title": "Overview",
+            "path": "en/09-quality-web/README.md"
+          },
+          {
+            "title": "01 Accessibility And Inclusive Design",
+            "path": "en/09-quality-web/01-accessibility-and-inclusive-design.md"
+          },
+          {
+            "title": "02 Semantics Keyboard And Screen Readers",
+            "path": "en/09-quality-web/02-semantics-keyboard-and-screen-readers.md"
+          },
+          {
+            "title": "03 Responsive And Device Independent Design",
+            "path": "en/09-quality-web/03-responsive-and-device-independent-design.md"
+          },
+          {
+            "title": "04 Web Performance From The User Perspective",
+            "path": "en/09-quality-web/04-web-performance-from-the-user-perspective.md"
+          },
+          {
+            "title": "05 Seo And Aio Basics",
+            "path": "en/09-quality-web/05-seo-and-aio-basics.md"
+          },
+          {
+            "title": "06 Privacy Tracking Consent And Digital Ethics",
+            "path": "en/09-quality-web/06-privacy-tracking-consent-and-digital-ethics.md"
+          },
+          {
+            "title": "Demo",
+            "path": "en/09-quality-web/demo.md"
+          },
+          {
+            "title": "Homework",
+            "path": "en/09-quality-web/homework.md"
+          }
+        ]
+      },
+      {
+        "title": "10 Reliable And High Performance Web",
+        "path": "en/10-reliable-and-high-performance-web",
+        "files": [
+          {
+            "title": "Overview",
+            "path": "en/10-reliable-and-high-performance-web/README.md"
+          },
+          {
+            "title": "01 Service Quality And Availability",
+            "path": "en/10-reliable-and-high-performance-web/01-service-quality-and-availability.md"
+          },
+          {
+            "title": "02 Errors Handling And User Communication",
+            "path": "en/10-reliable-and-high-performance-web/02-errors-handling-and-user-communication.md"
+          },
+          {
+            "title": "03 Performance Response Load And Resources",
+            "path": "en/10-reliable-and-high-performance-web/03-performance-response-load-and-resources.md"
+          },
+          {
+            "title": "04 Cache Cdn And Geographic Distance",
+            "path": "en/10-reliable-and-high-performance-web/04-cache-cdn-and-geographic-distance.md"
+          },
+          {
+            "title": "05 Load Peaks Graceful Degradation And Observability",
+            "path": "en/10-reliable-and-high-performance-web/05-load-peaks-graceful-degradation-and-observability.md"
+          },
+          {
+            "title": "06 Performance Security And Cost Tradeoffs",
+            "path": "en/10-reliable-and-high-performance-web/06-performance-security-and-cost-tradeoffs.md"
+          },
+          {
+            "title": "07 Case Study Overloaded Ticketing Or University System",
+            "path": "en/10-reliable-and-high-performance-web/07-case-study-overloaded-ticketing-or-university-system.md"
+          },
+          {
+            "title": "Homework",
+            "path": "en/10-reliable-and-high-performance-web/homework.md"
+          }
+        ]
+      }
+    ]
+  }
+}
