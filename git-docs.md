@@ -60,28 +60,28 @@ A hivatkozásokhoz egy letisztult, "csomagkezelő-szerű" szintaxist használunk
 - **Távoli (remote) Mappa (teljes Space beemelése):** `js-masterclass@mas-oktato:master/chapters` (automatikusan a `config.yml`-t húzza be)
 
 ### Konfigurációs Példa (YAML)
-Íme egy példa, hogyan néz ki egy `config.yml` fájl, ami nagyon könnyen olvasható és karbantartható:
+Íme egy példa, hogyan néz ki egy letisztult `config.yml` fájl:
 
 ```yaml
-name: "Webprogramozás 1 (2026)"
-
-sidebar:
+title: "Webprogramozás 1"
+items:
   - title: "Általános Tudnivalók"
-    items:
-      - ./README.md
-      - ./kovetelmenyek.md
+    loc: ./README.md
+    
+  - title: "Követelményrendszer"
+    loc: ./kovetelmenyek.md
       
   - title: "1-3. Hét: Web Alapok (Laborci)"
-    items:
-      # Külső fájlok egyenkénti beemelése
-      - university-courses@laborci:main/web-programming-1/hu/01-what-is-the-web/README.md
-      - university-courses@laborci:main/web-programming-1/hu/01-what-is-the-web/05-client-server-and-multitier.md
+    loc: university-courses@laborci:main/web-programming-1/hu/01-what-is-the-web
       
   - title: "4-6. Hét: Haladó JavaScript"
-    # Egy teljes külső kurzus-mappa (és annak saját config.yml-jének) beemelése
-    items:
-      - js-masterclass@mas-oktato:master/04-advanced-js
+    loc: js-masterclass@mas-oktato:master/04-advanced-js
 ```
+
+### A hivatkozások (loc) működése:
+A feldolgozó (parser) a `loc` paraméter végződéséből okosan kitalálja, mit kell tennie:
+1. **Dokumentum:** Ha a `loc` egy `.md` fájlra végződik (pl. `./README.md`), akkor azt egyszerű tartalomként jeleníti meg.
+2. **Almenü / Space:** Ha a `loc` egy mappára mutat (nincs kiterjesztése, pl. `./folder` vagy egy távoli mappa), akkor a rendszer tudja, hogy ez egy almenü. Ekkor letölti az adott mappában lévő `config.yml`-t, és annak a tartalmát (a benne lévő `items` listát) rekurzívan beilleszti a jelenlegi menüfa alá.
 
 ## Markdown Frontmatter Képességek
 Annak érdekében, hogy a fájlok önmagukban is hordozzanak metaadatokat (és ne mindent a `config.yml`-ben kelljen definiálni), minden Markdown fájl tetején YAML Frontmatter-t használunk. 
